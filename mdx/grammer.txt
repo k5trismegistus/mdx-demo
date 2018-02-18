@@ -1,0 +1,18 @@
+?component: fragment+
+
+?fragment: component_ref
+         | string
+
+component_ref: "<" component_name ">"
+
+string: char+
+
+?char: WS
+     | STRING_INNER
+
+component_name: CNAME
+
+%import common.CNAME
+%import common.STRING_INNER
+%import common.SIGNED_NUMBER
+%import common.WS
