@@ -1,18 +1,17 @@
-?component: fragment+
+?component: child+
 
-?fragment: component_ref
-         | string
+?child: text
+      | "<" element_name ">"
 
-component_ref: "<" component_name ">"
+text: text_character+
+?text_character: /[^{}<>]/
 
-string: char+
+?element_name: identifier
 
-?char: WS
-     | STRING_INNER
+identifier: identifier_start [identifier_part*]
+?identifier_start: alphabet
+?identifier_part: alphabet
+                | number
 
-component_name: CNAME
-
-%import common.CNAME
-%import common.STRING_INNER
-%import common.SIGNED_NUMBER
-%import common.WS
+?alphabet: /[A-Za-z]/
+?number: /[0-9]/
