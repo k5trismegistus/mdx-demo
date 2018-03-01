@@ -2,13 +2,19 @@
 
 ?child: text
       | element
+      | expr
 
 element: "<" element_name ">"
+expr:  "{" WS* expression WS* "}"
 
 text: text_character+
 ?text_character: /[^{}<>]/
 
 ?element_name: identifier
+
+?expression: string_literal
+
+string_literal: "\"" /(\\\{|\\\}|[^{}<>])+/ "\""
 
 identifier: identifier_start [identifier_part*]
 ?identifier_start: alphabet
@@ -17,3 +23,5 @@ identifier: identifier_start [identifier_part*]
 
 ?alphabet: /[A-Za-z]/
 ?number: /[0-9]/
+
+%import common.WS

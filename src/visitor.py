@@ -12,11 +12,17 @@ class Visitor():
         key = self.visit(ast.children[0], env)
         return self.visit(self.components[key], env)
 
+    def expr(self, ast, env):
+        return self.visit(ast.children[1], env)
+
     def identifier(self, ast, env):
         return ''.join([child.value for child in ast.children])
 
     def text(self, ast, env):
         return ''.join([child.value for child in ast.children])
+
+    def string_literal(self, ast, env):
+        return ast.children[0].value
 
     def visit(self, ast, env):
         try:
