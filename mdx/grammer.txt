@@ -1,7 +1,9 @@
 ?component: child+
 
 ?child: text
-      | "<" element_name ">"
+      | element
+
+element: "<" element_name ">"
 
 text: text_character+
 ?text_character: /[^{}<>]/

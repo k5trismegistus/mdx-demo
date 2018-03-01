@@ -8,7 +8,6 @@ class Visitor():
     def component(self, ast, env):
         return ''.join([self.visit(child_ast, env) for child_ast in ast.children])
 
-
     def element(self, ast, env):
         key = self.visit(ast.children[0], env)
         return self.visit(self.components[key], env)
