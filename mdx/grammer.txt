@@ -12,9 +12,16 @@ text: text_character+
 
 ?element_name: identifier
 
-?expression: string_literal
+?expression: expr_string
+           | expr_number
 
+?expr_string: string_literal
+            | string_repeat
 string_literal: "\"" /(\\\{|\\\}|[^{}<>])+/ "\""
+string_repeat: string_literal WS* "*" WS* expr_number
+
+?expr_number: number_literal
+number_literal: number+
 
 identifier: identifier_start [identifier_part*]
 ?identifier_start: alphabet

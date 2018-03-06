@@ -24,6 +24,15 @@ class Visitor():
     def string_literal(self, ast, env):
         return ast.children[0].value
 
+    def string_repeat(self, ast, env):
+        target = self.visit(ast.children[0], env)
+        print(ast.children)
+        multiplier = self.visit(ast.children[-1], env)
+        return target * multiplier
+
+    def number_literal(self, ast, env):
+        return int(ast.children[0].value)
+
     def visit(self, ast, env):
         try:
             f = getattr(self, ast.data)
