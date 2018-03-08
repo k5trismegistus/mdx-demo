@@ -6,7 +6,7 @@ class Visitor():
         raise
 
     def component(self, ast, env):
-        return ''.join([self.visit(child_ast, env) for child_ast in ast.children])
+        return ''.join([str(self.visit(child_ast, env)) for child_ast in ast.children])
 
     def element(self, ast, env):
         key = self.visit(ast.children[0], env)
