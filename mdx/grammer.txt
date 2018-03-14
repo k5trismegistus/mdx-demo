@@ -4,10 +4,12 @@
       | element
       | expr
 
-element: "<" element_name ">"
+element: "<" WS* element_name (WS* element_attribute)* WS* ">"
+element_attribute: identifier "=" "{" WS* expression WS* "}"
+
 expr:  "{" WS* expression WS* "}"
 
-text: text_character+
+text: (text_character+)
 ?text_character: /[^{}<>]/
 
 ?element_name: identifier

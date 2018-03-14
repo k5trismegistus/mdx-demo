@@ -12,7 +12,6 @@ if __name__ == '__main__':
     rule = open('mdx/grammer.txt').read()
     parser = Lark(rule, start='component')
 
-
     components = dict()
 
     for component_file in glob.glob('./components/*.mdx'):
@@ -22,6 +21,7 @@ if __name__ == '__main__':
             components[component_name] = parser.parse(f.read())
 
     root = components['Root']
+    print(root.pretty())
 
     global_env = dict()
 
